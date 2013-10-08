@@ -2,7 +2,7 @@ package edu.macalester.comp124.wordcounter;
 
 /**
  * Records counts for a particular word.
- * A case insensitive
+ *
  * @author Shilad Sen
  */
 public class SingleWordCounter {
@@ -25,10 +25,6 @@ public class SingleWordCounter {
         this.count++;
     }
 
-    public String getWord() {
-        return word;
-    }
-
     /**
      * Returns true iff the "cleaned" version of the word matches.
      * @param word
@@ -44,13 +40,18 @@ public class SingleWordCounter {
         return count;
     }
 
+    public String getWord() {
+        return word;
+    }
+
 
     /**
      * Removes excess punctuation from a word, and turns it to lower case.
+     * Only used internally by the wordMatches method.
      * @param word
      * @return
      */
-    public static String cleanWord(String word) {
+    private static String cleanWord(String word) {
         return word.toLowerCase().replaceAll("[^a-zA-Z0-9]+", "");
     }
 }

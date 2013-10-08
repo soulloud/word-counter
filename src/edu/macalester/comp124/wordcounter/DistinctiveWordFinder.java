@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 /**
  * Interesting word finder.
- * To use this class, first call countWords(), then call findInterestingWords.
+ * To use this class, first call countWords(), then call findDistinctive.
  * 
  * Your tasks are:
  * 1. Complete the countWordsInOneFile method (you only need to add three lines of code).
@@ -17,7 +17,7 @@ import java.util.Arrays;
  * @author shilad
  *
  */
-public class InterestingWordFinder {
+public class DistinctiveWordFinder {
 	// Word counts from each file.
 	private AllWordsCounter primaryCounts;
 	private AllWordsCounter secondaryCounts;
@@ -25,7 +25,7 @@ public class InterestingWordFinder {
 	/**
 	 * Constructs a new word counter.
 	 */
-	public InterestingWordFinder() {
+	public DistinctiveWordFinder() {
         primaryCounts = new AllWordsCounter();
         secondaryCounts = new AllWordsCounter();
 	}
@@ -56,14 +56,7 @@ public class InterestingWordFinder {
 			if (line == null) {
 				break;
 			}
-
-            String words[] = splitLine(line);
-
-            // TODO: Count each of the words using the supplied counter
-			// This should only require a few lines of code.
-
-            // XXX
-            for (String w : words) {
+            for (String w : splitLine(line)) {
                 counter.count(w);
             }
 		}
@@ -73,36 +66,27 @@ public class InterestingWordFinder {
 	 * Find and display words in the primary word counter that are interesting.
 	 * Use System.out.println() to print out information about the interesting
 	 * words.
-	 * TODO: Loop overall all the words in the primary counter and:
-	 * 1. Get the counts for the word from the primary and secondary counters.
-	 * 2. Calculate a "score" from the primary and secondary counts (higher should be better).
-	 * 
-	 * You should use this score in three increasingly complex stages.  Complete one stage at a
-	 * a time:
-	 * 
-	 * Stage 1: print out the counts and scores for all words.  You should tweak your scoring
-	 * 			method so that words that seem more interesting have higher scores.
-	 * 
-	 * Stage 2: choose some threshold of minimum interestingness, and print out
-	 * 			words that have scores above that.
-	 *
-	 * Stage 3: Select the 10 words that are most interesting.  You can do this by
-	 *			creating a list of all words and scores (see the WordScore class), and
-	 *			sorting the list, and printing the top 10.		
-	 *
 	 */
-	private void findInterestingWords() {
-        String words[] = primaryCounts.getAllWords();
+	private void findDistinctive() {
+        // TODO: initialize to words in primary counter
+        String words[] = null;
+
+        // This array will be used to sort the word scores;
         WordScore scores[] = new WordScore[words.length];
 
         for (int i = 0; i < words.length; i++) {
             String word = words[i];
-            int c1 = primaryCounts.getCount(word);
-            int c2 = secondaryCounts.getCount(word);
-            double score = getInterestingnessScore(c1, c2);
+
+            // TODO: correctly get the primary and secondary counts
+            int primary = 0;
+            int secondary = 0;
+
+            // Calculate the interestingness score and prepare it in the output queue
+            double score = getDistinctiveScore(primary, secondary);
             scores[i] = new WordScore(word, score);
         }
 
+        // Display the most interesting scores.
         Arrays.sort(scores);
         for (int i = 0; i < 10; i++) {
             String word = scores[i].getWord();
@@ -118,8 +102,10 @@ public class InterestingWordFinder {
      * @param secondaryCount
      * @return
      */
-    private double getInterestingnessScore(int primaryCount, int secondaryCount) {
-        return (1.0 + primaryCount) / (4.0 + primaryCount + secondaryCount);
+    private double getDistinctiveScore(int primaryCount, int secondaryCount) {
+        // TODO: return something reasonable.
+        // A higher value means more "distinctive".
+        return 0.0;
     }
 
 	/**
@@ -135,9 +121,9 @@ public class InterestingWordFinder {
         File f1 = new File("dat/palin.txt");
         File f2 = new File("dat/biden.txt");
 
-		InterestingWordFinder finder = new InterestingWordFinder();
+		DistinctiveWordFinder finder = new DistinctiveWordFinder();
 		finder.countWords(f1, f2);
-		finder.findInterestingWords();
+		finder.findDistinctive();
 	}
 
     /**
