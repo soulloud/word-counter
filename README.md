@@ -1,7 +1,7 @@
 Comp 124: Word Counting Lab
 ============
 
-In this lab you'll create a java object called AllWordsCounter who records
+In this lab you'll create a java object called AllWordsCounter that records
 counts for individual words.
 
 You'll apply this object to identify distinctive vocabulary for Joe Biden and Sarah Palin
@@ -34,6 +34,9 @@ Given the current main() method, what will primaryCounts and secondaryCounts con
 * In findInterestingWords you'll see two TODOs, and you'll find one additional TODO in getInterestingnessScores.
 * Complete the findDistinctive method
 * Complete the getDistinctiveScore method in a way that's reasonable to you.
+The function will be called once for each word, with primaryCount and secondaryCount holding the counts for Biden and Palin (or reverse).
+For example, you might consider subtracting or dividing the counts for the two parameters.
+You will see the limitations of this approach, and should consider alternatives.
 * Reverse the inputs (palin.txt and biden.txt) to find distinctive phrases for Biden.
 * Tweak your scoring function.
 * If you finish, think about ways to speed up your program.

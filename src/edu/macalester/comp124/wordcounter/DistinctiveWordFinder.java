@@ -77,7 +77,8 @@ public class DistinctiveWordFinder {
         for (int i = 0; i < words.length; i++) {
             String word = words[i];
 
-            // TODO: correctly get the primary and secondary counts
+            // TODO: correctly get the primary and secondary counts from
+            // the primaryCounts and secondaryCounts instance variables.
             int primary = 0;
             int secondary = 0;
 
@@ -98,8 +99,8 @@ public class DistinctiveWordFinder {
 
     /**
      * Returns a "score" indicating how interesting a word is.
-     * @param primaryCount
-     * @param secondaryCount
+     * @param primaryCount  The count for a specific word for the primary candidate (i.e. Biden)
+     * @param secondaryCount The count for a specific word for the secondary candidate (i.e. Palin)
      * @return
      */
     private double getDistinctiveScore(int primaryCount, int secondaryCount) {
